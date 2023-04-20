@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animações usando JQuery</title>
+</head>
+<style>
+    .conteudo
+    {
+        width: 150px;
+        height: 150px;
+        background-color: yellow;
+        margin-left: 100px;
+    }
+    .boneco
+    {
+        width: 50px;
+        height: 50px;
+        background-color: tomato;
+        position: absolute;
+        top: 100px;
+        left: 200px;
+    }
+</style>
+<body>
+    <button onclick="Descer();">Descer</button>
+    <button onclick="Subir();">Subir</button>
+
+    <button onclick="Esquerda();">Esquerda</button>
+    <button onclick="Direita();">Direita</button>
+
+    <div class="conteudo" id="conteudo">
+        Teste 1 <br> <br>
+        Teste 2 <br> <br>
+        Teste 3 
+    </div>
+
+    <br>
+    Texto abaixo da Div
+
+    <div class="boneco" id="boneco">TESTE</div>
+
+</body>
+<script src="jquery-3.6.4.min.js">  </script>
+<script>
+
+    temporizador = setInterval(Correr, 1000)
+    
+    SD = 100
+
+    subir = false
+
+    function Correr()
+    {
+        if (subir == false)
+        {
+            SD += 10
+            if (SD>200)
+            {
+                subir = true
+            }
+        
+            $("#boneco"). animate({
+            top: '+=10px',
+            })
+        }
+        else
+    {
+        if (subir == false)
+        {
+            SD -= 10
+            if (SD<10)
+            {
+                subir = false
+            }
+        
+            $("#boneco"). animate({
+            top: '-=10px',
+            })
+        }
+    }
+    }
+    
+
+    function Descer()
+    {
+        $("#conteudo").slideDown(1200, Mensagem("DESCENDO"));
+    }
+    function Subir()
+    {
+        $("#conteudo").slideUp(1200, Mensagem("SUBINDO"));
+    }
+
+    function Mensagem(texto)
+    { 
+        alert(texto)
+    }
+
+    E = 100
+    function Esquerda()
+    {
+        d = new Date()
+        alert(d.getDate())
+        
+        if(E >= 50)
+        {
+            E = E - 50
+             $("#conteudo"). animate({
+            marginLeft: '-=50px',
+        },1200)
+        }
+    }
+
+    function Direita()
+    {
+        if(E <= 500)
+        {
+            E = E + 50
+             $("#conteudo"). animate({
+            marginLeft: '+=50px' 
+        },1200)
+        }
+    }
+    
+</script>
+</html>
